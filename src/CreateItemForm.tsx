@@ -1,11 +1,13 @@
 import { ChangeEvent, KeyboardEvent, useState } from "react";
-import { Button } from "./Button";
+import TextField from "@mui/material/TextField";
+import AddBoxIcon from "@mui/icons-material/AddBox";
+import IconButton from "@mui/material/IconButton";
 
-type Props  = {
+type Props = {
   onCreateItem: (title: string) => void;
 };
 
-export const CreateItemForm = ({ onCreateItem }: Props ) => {
+export const CreateItemForm = ({ onCreateItem }: Props) => {
   const [title, setTitle] = useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
@@ -32,19 +34,22 @@ export const CreateItemForm = ({ onCreateItem }: Props ) => {
 
   return (
     <div>
-      <input
-        name={"inputTitleField"}
-        className={error ? "error" : ""}
+      <TextField
+        label={error ? error : "type smth..."}
+        variant={"outlined"}
+        size={"small"}
+        error={!!error}
         value={title}
         onChange={changeItemTitleHandler}
         onKeyDown={createItemOnEnterHandler}
       />
-      <Button
-        title="+"
+      <IconButton
+        color={"primary"}
         onClick={createItemHandler}
         disabled={isButtonDisabled}
-      />
-      {error && <div className="error-message">{error}</div>}
+      >
+        <AddBoxIcon />
+      </IconButton>
     </div>
   );
 };
