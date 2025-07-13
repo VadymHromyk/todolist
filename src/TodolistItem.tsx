@@ -104,14 +104,14 @@ export const TodolistItem = ({
 
   return (
     <div className="TodolistItemMain">
-      <div className="container">
+      <Box sx={{ display: "flex" }}>
         <h3>
           <EditableSpan value={title} onChange={changeTodolistTitleHandler} />
         </h3>
         <IconButton onClick={deleteTodolistHandler} size={"small"}>
           <DeleteIcon />
         </IconButton>
-      </div>
+      </Box>
       <CreateItemForm onCreateItem={createTaskHandler} />
       {tasksList}
       <Box sx={containerSx}>

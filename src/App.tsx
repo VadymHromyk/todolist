@@ -144,64 +144,60 @@ export const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <div className="app">
-        <AppBar position="static" sx={{ mb: "30px" }}>
-          <Toolbar>
-            <Container maxWidth={"lg"} sx={containerSx}>
-              <IconButton color="inherit" edge="start">
-                <MenuIcon />
-              </IconButton>
-              <div>
-                <NavButton color="inherit">Login</NavButton>
-                <NavButton color="inherit">Logout</NavButton>
-                <NavButton background={theme.palette.primary.dark}>
-                  Faq
-                </NavButton>
-                <Switch color={"default"} onChange={changeMode} />
-              </div>
-            </Container>
-          </Toolbar>
-        </AppBar>
+      <AppBar position="static" sx={{ mb: "30px" }}>
+        <Toolbar>
+          <Container maxWidth={"lg"} sx={containerSx}>
+            <IconButton color="inherit" edge="start">
+              <MenuIcon />
+            </IconButton>
+            <div>
+              <NavButton color="inherit">Login</NavButton>
+              <NavButton color="inherit">Logout</NavButton>
+              <NavButton background={theme.palette.primary.dark}>Faq</NavButton>
+              <Switch color={"default"} onChange={changeMode} />
+            </div>
+          </Container>
+        </Toolbar>
+      </AppBar>
 
-        <Container maxWidth={"lg"}>
-          <Grid container sx={{ mb: "30px" }}>
-            <CreateItemForm onCreateItem={createTodolistHandler} />
-          </Grid>
+      <Container maxWidth={"lg"}>
+        <Grid container sx={{ mb: "30px" }}>
+          <CreateItemForm onCreateItem={createTodolistHandler} />
+        </Grid>
 
-          <Grid container spacing={4}>
-            {todolists.map((todolist) => {
-              const getFilteredTasks = () => {
-                switch (todolist.filter) {
-                  case "active":
-                    return tasks[todolist.id].filter((task) => !task.isDone);
-                  case "completed":
-                    return tasks[todolist.id].filter((task) => task.isDone);
-                  default:
-                    return tasks[todolist.id];
-                }
-              };
-              return (
-                <Grid key={todolist.id}>
-                  <Paper elevation={8} sx={{ p: "0 20px 20px 20px" }}>
-                    <TodolistItem
-                      todolist={todolist}
-                      tasks={getFilteredTasks()}
-                      deleteTask={deleteTask}
-                      deleteAllTasks={deleteAllTasks}
-                      createTask={createTask}
-                      changeTaskStatus={changeTaskStatus}
-                      changeFilter={changeFilter}
-                      deleteTodolist={deleteTodolist}
-                      changeTaskTitle={changeTaskTitle}
-                      changeTodolistTitle={changeTodolistTitle}
-                    />
-                  </Paper>
-                </Grid>
-              );
-            })}
-          </Grid>
-        </Container>
-      </div>
+        <Grid container spacing={3}>
+          {todolists.map((todolist) => {
+            const getFilteredTasks = () => {
+              switch (todolist.filter) {
+                case "active":
+                  return tasks[todolist.id].filter((task) => !task.isDone);
+                case "completed":
+                  return tasks[todolist.id].filter((task) => task.isDone);
+                default:
+                  return tasks[todolist.id];
+              }
+            };
+            return (
+              <Grid key={todolist.id}>
+                <Paper elevation={3} sx={{ p: "10px 20px 20px 20px" }}>
+                  <TodolistItem
+                    todolist={todolist}
+                    tasks={getFilteredTasks()}
+                    deleteTask={deleteTask}
+                    deleteAllTasks={deleteAllTasks}
+                    createTask={createTask}
+                    changeTaskStatus={changeTaskStatus}
+                    changeFilter={changeFilter}
+                    deleteTodolist={deleteTodolist}
+                    changeTaskTitle={changeTaskTitle}
+                    changeTodolistTitle={changeTodolistTitle}
+                  />
+                </Paper>
+              </Grid>
+            );
+          })}
+        </Grid>
+      </Container>
     </ThemeProvider>
   );
 };
