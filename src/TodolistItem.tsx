@@ -18,7 +18,6 @@ type Props = {
   todolist: Todolist;
   tasks: Task[];
   deleteTask: (todolistId: string, taskId: string) => void;
-  deleteAllTasks: (todolistId: string) => void;
   createTask: (todolistId: string, title: string) => void;
   changeTaskStatus: (
     todolistId: string,
@@ -35,7 +34,6 @@ export const TodolistItem = ({
   todolist: { id, title, filter },
   tasks,
   deleteTask,
-  deleteAllTasks,
   createTask,
   changeTaskStatus,
   changeTaskTitle,
@@ -45,10 +43,6 @@ export const TodolistItem = ({
 }: Props) => {
   const changeFilterHandler = (id: string, filter: FilterValues) => {
     changeFilter(id, filter);
-  };
-
-  const deleteAllTasksHandler = () => {
-    deleteAllTasks(id);
   };
 
   const deleteTodolistHandler = () => {
@@ -137,9 +131,6 @@ export const TodolistItem = ({
           Completed
         </Button>
       </Box>
-      <div>
-        <Button title="Delete all" onClick={deleteAllTasksHandler} />
-      </div>
     </div>
   );
 };

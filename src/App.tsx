@@ -69,10 +69,6 @@ export const App = () => {
     setTasks({ ...tasks, [todolistId]: newTodolistTasks });
   };
 
-  const deleteAllTasks = (todolistId: string) => {
-    setTasks({ ...tasks, [todolistId]: [] });
-  };
-
   const createTask = (todolistId: string, title: string) => {
     const newTask = { id: v1(), title, isDone: false };
     setTasks({ ...tasks, [todolistId]: [newTask, ...tasks[todolistId]] });
@@ -184,7 +180,6 @@ export const App = () => {
                     todolist={todolist}
                     tasks={getFilteredTasks()}
                     deleteTask={deleteTask}
-                    deleteAllTasks={deleteAllTasks}
                     createTask={createTask}
                     changeTaskStatus={changeTaskStatus}
                     changeFilter={changeFilter}
