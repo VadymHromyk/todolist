@@ -1,10 +1,7 @@
 import type { Todolist } from "../App";
 import { v1 } from "uuid";
 
-const initialState: Todolist[] = [
-  { id: "todolistId1", title: "What to learn", filter: "all" },
-  { id: "todolistId2", title: "What to buy", filter: "all" },
-];
+const initialState: Todolist[] = [];
 
 type FilterValues = "all" | "active" | "completed";
 
@@ -42,6 +39,8 @@ export const todolistsReducer = (
           : todolist
       );
     }
+    default:
+      return state;
   }
 };
 
